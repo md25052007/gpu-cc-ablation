@@ -1,0 +1,109 @@
+path_ordered     n= 200,000  stored entries=  399,998
+path_shuffled    n= 200,000  stored entries=  399,998
+star_low         n= 100,001  stored entries=  200,000
+star_high        n= 100,001  stored entries=  200,000
+isolated         n=  50,000  stored entries=    2,000
+cliques          n=   8,000  stored entries=  312,000
+messy_onedir     n=  20,000  stored entries=  105,500
+grid             n=  90,000  stored entries=  358,800
+er_random        n= 200,000  stored entries=1,199,988
+powerlaw         n= 100,000  stored entries=1,849,160
+single_vertex    n=       1  stored entries=        0
+two_vertices     n=       2  stored entries=        2
+graph cliques: |V|=8000 |E|=156000  segments=39 (auto)  t1=4 t2=32 block=256  (load+preprocess 3 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.615      0.032      0.574      0.008  yes
+V1     39      1.052      0.052      0.443      0.481  yes
+V2      1      0.364      0.223      0.093      0.007  yes
+V3     39      0.990      0.152      0.485      0.329  yes
+V4     39      1.148      0.254      0.561      0.390  yes
+graph er_random: |V|=200000 |E|=599994  segments=6 (auto)  t1=4 t2=32 block=256  (load+preprocess 17 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      1.228      0.041      1.163      0.031  yes
+V1      6      0.446      0.048      0.305      0.094  yes
+V2      1      1.471      0.224      1.199      0.038  yes
+V3      6      0.715      0.234      0.371      0.097  yes
+V4      6      0.692      0.356      0.229      0.092  yes
+graph grid: |V|=90000 |E|=179400  segments=4 (auto)  t1=4 t2=32 block=256  (load+preprocess 4 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.967      0.049      0.889      0.025  yes
+V1      4      0.320      0.048      0.156      0.096  yes
+V2      1      1.183      0.229      0.924      0.025  yes
+V3      4      0.470      0.224      0.198      0.047  yes
+V4      4      1.412      0.289      1.078      0.045  yes
+graph isolated: |V|=50000 |E|=1000  segments=1 (auto)  t1=4 t2=32 block=256  (load+preprocess 1 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.075      0.031      0.028      0.013  yes
+V1      1      0.054      0.025      0.007      0.022  yes
+V2      1      0.257      0.206      0.030      0.022  yes
+V3      1      0.245      0.198      0.031      0.021  yes
+V4      1      0.322      0.289      0.026      0.005  yes
+graph messy_onedir: |V|=20000 |E|=99973  segments=10 (auto)  t1=4 t2=32 block=256  (load+preprocess 2 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.363      0.017      0.329      0.011  yes
+V1     10      0.241      0.025      0.145      0.076  yes
+V2      1      0.452      0.196      0.242      0.010  yes
+V3     10      0.672      0.254      0.234      0.158  yes
+V4     10      0.470      0.239      0.142      0.076  yes
+graph path_ordered: |V|=200000 |E|=199999  segments=2 (auto)  t1=4 t2=32 block=256  (load+preprocess 5 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      3.314      0.031      3.199      0.084  yes
+V1      2      5.572      0.048      5.390      0.114  yes
+V2      1      8.923      0.731      8.132      0.058  yes
+V3      2      7.606      0.792      6.743      0.071  yes
+V4      2      4.931      1.166      3.592      0.059  yes
+graph path_shuffled: |V|=200000 |E|=199999  segments=2 (auto)  t1=4 t2=32 block=256  (load+preprocess 7 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.135      0.036      0.056      0.027  yes
+V1      2      0.157      0.029      0.067      0.036  yes
+V2      1      0.340      0.224      0.090      0.027  yes
+V3      2      0.366      0.225      0.108      0.038  yes
+V4      2      0.460      0.327      0.093      0.039  yes
+graph powerlaw: |V|=100000 |E|=924580  segments=18 (auto)  t1=4 t2=32 block=256  (load+preprocess 35 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1     18.974      0.021     18.897      0.017  yes
+V1     18      8.239      0.027      8.064      0.132  yes
+V2      1      1.922      0.240      1.624      0.016  yes
+V3     18      1.812      0.284      1.182      0.375  yes
+V4     18      1.490      0.645      0.699      0.181  yes
+graph single_vertex: |V|=1 |E|=0  segments=1 (auto)  t1=4 t2=32 block=256  (load+preprocess 0 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.050      0.027      0.004      0.019  yes
+V1      1      0.033      0.026      0.004      0.003  yes
+V2      1      0.351      0.321      0.026      0.004  yes
+V3      1      0.243      0.189      0.025      0.004  yes
+V4      1      0.260      0.235      0.003      0.021  yes
+graph star_high: |V|=100001 |E|=100000  segments=2 (auto)  t1=4 t2=32 block=256  (load+preprocess 3 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.093      0.050      0.020      0.006  yes
+V1      2      0.103      0.027      0.043      0.031  yes
+V2      1      0.245      0.203      0.035      0.006  yes
+V3      2      0.286      0.196      0.061      0.029  yes
+V4      2      0.349      0.284      0.058      0.012  yes
+graph star_low: |V|=100001 |E|=100000  segments=2 (auto)  t1=4 t2=32 block=256  (load+preprocess 11 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1     41.182      0.056     41.121      0.006  yes
+V1      2     41.207      0.059     41.128      0.011  yes
+V2      1      0.444      0.222      0.219      0.006  yes
+V3      2      0.446      0.206      0.231      0.011  yes
+V4      2      0.503      0.283      0.212      0.011  yes
+graph two_vertices: |V|=2 |E|=1  segments=1 (auto)  t1=4 t2=32 block=256  (load+preprocess 0 ms)
+GPU: NVIDIA GeForce RTX 3050 6GB Laptop GPU (sm_86, 6.4 GB)
+ver     s  median_ms   setup_ms    hook_ms    jump_ms  correct
+V0      1      0.074      0.026      0.023      0.024  yes
+V1      1      0.070      0.025      0.023      0.023  yes
+V2      1      0.236      0.189      0.026      0.022  yes
+V3      1      0.249      0.202      0.024      0.024  yes
+V4      1      0.304      0.255      0.025      0.024  yes
+ALL TESTS PASSED
