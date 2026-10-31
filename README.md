@@ -80,10 +80,10 @@ flowchart LR
 | Version | Segments `s` | Who processes the edges | What it isolates |
 |---|---|---|---|
 | **V0** baseline | 1 | one thread per vertex, whole neighbour list | the reference point |
-| **V1** segmentation (Sutton-style) | `round(2|E|/|V|)` | one thread per vertex, one slice of its list per segment | adaptive segmentation |
+| **V1** segmentation (Sutton-style) | `round(2\|E\|/\|V\|)` | one thread per vertex, one slice of its list per segment | adaptive segmentation |
 | **V2** degree-aware (ECL-CC-style) | 1 | thread / warp / block chosen by degree | degree-aware dispatch |
-| **V3** combined | `round(2|E|/|V|)` | thread / warp / block chosen by in-segment degree | the planned combination |
-| **V4** refined hybrid | `round(2|E|/|V|)` | light vertices: one thread **per edge** from a flat light-edge list; heavy vertices: slices with warp / block dispatch, as in V3 | V3 without its idle threads |
+| **V3** combined | `round(2\|E\|/\|V\|)` | thread / warp / block chosen by in-segment degree | the planned combination |
+| **V4** refined hybrid | `round(2\|E\|/\|V\|)` | light vertices: one thread **per edge** from a flat light-edge list; heavy vertices: slices with warp / block dispatch, as in V3 | V3 without its idle threads |
 
 **Option B segmentation (V1, V3, V4).** Segment `k` of vertex `v` with forward degree `d` covers neighbour positions
 `[off[v] + ⌊k·d/s⌋, off[v] + ⌊(k+1)·d/s⌋)`. Every vertex contributes about `d/s` edges to every segment, and the slices cover each row exactly once. A vertex of degree 1000 with `s = 20` hooks 50 edges per segment.
