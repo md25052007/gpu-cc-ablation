@@ -1,0 +1,8 @@
+graph,type,vertices,edges,avg_degree,max_degree,degree_cv,components,auto_s
+delaunay_n22,mesh,4194304,12582869,6.0,23,0.22,1,6
+rgg_n_2_21_s0,random geometric,2097152,14487995,13.82,37,0.27,8,14
+road_usa,road,23947347,28854312,2.41,9,0.39,1,2
+com-Orkut,social,3072441,117185083,76.28,33313,2.03,1,76
+soc-LiveJournal1,social,4847571,42851237,17.68,20333,2.94,1876,18
+web-Google,web,875713,4322051,9.87,6332,4.02,2746,10
+kron_g500-logn21,synthetic power-law,2097152,91040932,86.82,213904,8.7,553159,87

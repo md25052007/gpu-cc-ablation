@@ -1,0 +1,15 @@
+% |E| = undirected edges after symmetrising, deduplicating and removing self-loops;
+% degree CV = std/mean of degree; auto s = round(2|E|/|V|)
+\begin{tabular}{llrrrrrrr}
+\hline
+Graph & Type & $|V|$ & $|E|$ & Avg deg & Max deg & Deg CV & Comps & $s$ \\
+\hline
+delaunay\_n22 & mesh & 4,194,304 & 12,582,869 & 6.00 & 23 & 0.22 & 1 & 6 \\
+rgg\_n\_2\_21\_s0 & random geometric & 2,097,152 & 14,487,995 & 13.82 & 37 & 0.27 & 8 & 14 \\
+road\_usa & road & 23,947,347 & 28,854,312 & 2.41 & 9 & 0.39 & 1 & 2 \\
+com-Orkut & social & 3,072,441 & 117,185,083 & 76.28 & 33,313 & 2.03 & 1 & 76 \\
+soc-LiveJournal1 & social & 4,847,571 & 42,851,237 & 17.68 & 20,333 & 2.94 & 1,876 & 18 \\
+web-Google & web & 875,713 & 4,322,051 & 9.87 & 6,332 & 4.02 & 2,746 & 10 \\
+kron\_g500-logn21 & synthetic power-law & 2,097,152 & 91,040,932 & 86.82 & 213,904 & 8.70 & 553,159 & 87 \\
+\hline
+\end{tabular}
