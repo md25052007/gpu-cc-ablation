@@ -1,0 +1,9 @@
+# converted graphs and downloads (large; rebuilt by tools/download.py)
+data/
+# compiled binaries
+bin/
+# your own benchmark runs (the published run lives in results_rtx3050_laptop/)
+results/
+__pycache__/
+*.pyc
+*.part
