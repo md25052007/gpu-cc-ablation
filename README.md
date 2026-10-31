@@ -85,7 +85,7 @@ flowchart LR
 | **V3** combined | `round(2\|E\|/\|V\|)` | thread / warp / block chosen by in-segment degree | the planned combination |
 | **V4** refined hybrid | `round(2\|E\|/\|V\|)` | light vertices: one thread **per edge** from a flat light-edge list; heavy vertices: slices with warp / block dispatch, as in V3 | V3 without its idle threads |
 
-**Option B segmentation (V1, V3, V4).** Segment `k` of vertex `v` with forward degree `d` covers neighbour positions
+**Slicing (V1, V3, V4).** Segment `k` of vertex `v` with forward degree `d` covers neighbour positions
 `[off[v] + ⌊k·d/s⌋, off[v] + ⌊(k+1)·d/s⌋)`. Every vertex contributes about `d/s` edges to every segment, and the slices cover each row exactly once. A vertex of degree 1000 with `s = 20` hooks 50 edges per segment.
 
 **Dispatch (V2, V3, V4).** In-segment degree `⌈d/s⌉ ≤ t1` → thread, `≤ t2` → warp (32 threads), larger → block (256 threads). Defaults `t1 = 4`, `t2 = 32`. With `s = 1` this is plain degree-based dispatch (V2).
@@ -134,7 +134,7 @@ Total-time versions of Figs. 1, 3 and 5 are in [`figures/total/`](results_rtx305
 
 ### What the results show
 - **Segmentation (V1)** helps on most graphs, by up to 2.4× over V0 on `kron`. **Dispatch (V2)** helps more on skewed graphs (4.9× on `kron`) but hurts on the mesh `delaunay_n22`.
-- **Combining them as planned (V3)** beats both V1 and V2 only on the two most skewed graphs (`web-Google`, `kron`). The counters explain why: Option B launches every vertex in every segment, leaving up to 3.1 × 10⁸ idle threads (`kron`).
+- **Combining them as planned (V3)** beats both V1 and V2 only on the two most skewed graphs (`web-Google`, `kron`). The counters explain why: with slicing, every vertex is launched in every segment, leaving up to 3.1 × 10⁸ idle threads (`kron`).
 - **V4 removes most of those idle threads** (from 12.9 million to 43 on `delaunay_n22`, and by 50–73 % on the skewed graphs) and keeps cooperative processing of hubs. It is the fastest variant on 6 of 7 graphs in kernel time; on uniform graphs the margin is small (5 % on `road_usa`, a tie with V1 on `rgg_n_2_21_s0`).
 - **Fewer CAS retries did not mean faster runs.** On the skewed graphs V0 and V1 have the fewest retries and are among the slowest, and V4 has 1.2–12× more retries than V3 yet is faster. Atomic contention is not the bottleneck on this GPU.
 - **The automatic `s = 2|E|/|V|` is often far above the best value.** In the sweep, V3 and V4 are fastest at `s` between 1 and 16 on every graph, while the rule picks 76 on `com-Orkut` and 87 on `kron` (Fig. 3).
@@ -239,7 +239,7 @@ gpu-cc-ablation/
 ├── src/
 │   ├── graph.h                    .egr reader, forward CSR, CPU union-find reference,
 │   │                              partition check, graph statistics
-│   ├── kernels.cuh                Atomic-Hook, Multi-Jump, Option B slicing, dispatch buckets,
+│   ├── kernels.cuh                Atomic-Hook, Multi-Jump, slicing, dispatch buckets,
 │   │                              thread / warp / block / light-edge kernels, counters
 │   └── cc.cu                      driver for V0–V4: setup, segment loop, timing, CPU emulation,
 │                                  CSV output, command line
@@ -316,10 +316,10 @@ IT306 Parallel and Distributed Problem Solving, Department of Information Techno
 
 | Name | Roll number |
 |---|---|
-| Maithreya | 241AI013 |
-| Sindhu | 241AI021 |
-| Maharshi | 241AI022 |
-| Siddhanth | 241AI040 |
+| D Maithreya | 241AI013 |
+| M L Sindhu Preetham | 241AI021 |
+| Maharshi Kundu | 241AI022 |
+| Siddhanth R Naik | 241AI040 |
 
 Guide: **Dr. Biju R. Mohan**, Department of Information Technology, NITK Surathkal.
 
@@ -327,7 +327,7 @@ Guide: **Dr. Biju R. Mohan**, Department of Information Technology, NITK Surathk
 
 ## References
 
-1. M. Sutton, T. Ben-Nun, A. Barak. *Optimizing Parallel Graph Connectivity Computation via Subgraph Sampling.* arXiv:1612.01178, 2016.
+1. M. Sutton, T. Ben-Nun, A. Barak, S. Pai, K. Pingali. *Adaptive Work-Efficient Connected Components on the GPU.* arXiv:1612.01178, 2016.
 2. J. Jaiganesh, M. Burtscher. *A High-Performance Connected Components Implementation for GPUs.* HPDC 2018.
 3. T. A. Davis, Y. Hu. *The University of Florida Sparse Matrix Collection.* ACM Transactions on Mathematical Software 38(1), 2011.
 4. J. Leskovec, A. Krevl. *SNAP Datasets: Stanford Large Network Dataset Collection.* http://snap.stanford.edu/data, 2014.

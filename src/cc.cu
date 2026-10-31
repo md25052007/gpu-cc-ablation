@@ -1,12 +1,12 @@
 // cc.cu — driver for the 4-way ablation (V0-V3) and the refined version V4.
 //
 //   V0  baseline        : s = 1,          one thread per vertex
-//   V1  Sutton-style    : s = 2|E|/|V|,   one thread per vertex   (Option B slices)
+//   V1  Sutton-style    : s = 2|E|/|V|,   one thread per vertex   (sliced neighbour lists)
 //   V2  ECL-CC-style    : s = 1,          thread/warp/block by degree
 //   V3  proposed        : s = 2|E|/|V|,   thread/warp/block by in-segment degree
 //   V4  refined hybrid  : s = 2|E|/|V|,   light vertices: their edges hooked one thread per
 //                                         edge from a flat light-edge list (contiguous chunks,
-//                                         no idle threads); heavy vertices: Option B slices
+//                                         no idle threads); heavy vertices: sliced neighbour lists
 //                                         with warp/block dispatch (as in V3)
 //
 // Every version: init -> for k in 0..s-1 { hook(segment k); Multi-Jump(all) } -> labels.

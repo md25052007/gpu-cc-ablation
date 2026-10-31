@@ -2,7 +2,7 @@
 //
 //   Atomic-Hook  : lock-free CAS merge of two component trees
 //   Multi-Jump   : fused pointer jumping until every tree is a star
-//   Option B     : per-vertex slicing of the neighbor list into s segments
+//   Slicing      : per-vertex slicing of the neighbor list into s segments
 //   Dispatch     : thread / warp / block hook kernels
 //
 // Invariant used for correctness: parent[x] <= x for every x. Hook always
@@ -74,7 +74,7 @@ __host__ __device__ __forceinline__ void atomic_hook(int* parent, int u, int v, 
   }
 }
 
-// ---------------------------------------------------------------- Option B
+// ---------------------------------------------------------------- Slicing
 // Segment k of s for vertex v covers neighbor positions [b, e):
 //   b = off[v] + floor(k * d / s),  e = off[v] + floor((k+1) * d / s)
 // Over k = 0..s-1 the slices partition the row exactly; each has d/s +- 1 edges.
@@ -203,7 +203,7 @@ __global__ void k_hook_block(const int* __restrict__ wl, const int* __restrict__
 // V4 splits vertices by in-segment degree, exactly like V3's buckets:
 //   light (bucket 0)      -> its edges go into a flat edge list, hooked one thread per edge
 //                            in s contiguous chunks (no idle threads)
-//   heavy (buckets 1 / 2) -> Option B slices with warp / block dispatch (V3-style)
+//   heavy (buckets 1 / 2) -> sliced neighbour lists with warp / block dispatch (V3-style)
 // light_deg(v) is the number of entries v contributes to the flat list.
 struct LightDeg {
   const int* off; int s, t1, t2;
